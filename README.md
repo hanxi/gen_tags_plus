@@ -1,61 +1,30 @@
 # What is it ?
 
-[Gutentags](https://github.com/ludovicchabant/vim-gutentags) is a vim 8 dedicated plugin which will update gtags database in background automatically on file change. **Gutentags_plus** works with gutentags and provides seemless databases switching:
-
-- Define a `GscopeFind` command to perform cscope searching via `gtags-cscope`.
-- Connect gtags database of current project automatically and disconnect unrelated project databases before searching.
-- Reuse gtags-cscope connection if current project is unchanged (gtags-cscope connection doesn't need a reset after updating).
-
-Gutentags can connect gtags databases automatically too, but it is trying to connect all the databases after updating. As a result, when you are querying symbol definitions or references, you will get results from not only current project but also other unrelated projects. 
-
-And your quickfix list will be totally messed up if you are working on more than two projects simultaneously. So, unrelated gtags databases must be disconnected to prevent query results from many projects at the same time.
-
-That's the right way to use gtags. Install gutentags_plus with gutentags, you will never be worry about gtags database updating and connecting/disconnecting, you can search definitions and references whenever you want, database updating and switching are totally transparent to users, like using IDEs.
-
+Fork from [skywind3000/gutentags_plus](https://github.com/skywind3000/gutentags_plus)，support [jsfaint/gen_tags.vim](https://github.com/jsfaint/gen_tags.vim)
 
 # Installation
 
 vim-plug:
 
 ```VimL
-Plug 'skywind3000/gutentags_plus'
+Plug 'hanxi/gen_tags_plus'
 ```
 
 vundle:
 
 ```VimL
-Plugin 'skywind3000/gutentags_plus'
+Plugin 'hanxi/gen_tags_plus'
 ```
 
 # Configuration
 
 ```VimL
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'skywind3000/gutentags_plus'
+Plug 'jsfaint/gen_tags.vim'
+Plug 'hanxi/gen_tags_plus'
 
-" enable gtags module
-let g:gutentags_modules = ['ctags', 'gtags_cscope']
-
-" config project root markers.
-let g:gutentags_project_root = ['.root']
-
-" generate datebases in my cache directory, prevent gtags files polluting my project
-let g:gutentags_cache_dir = expand('~/.cache/tags')
-
-" forbid gutentags adding gtags databases
-let g:gutentags_auto_add_gtags_cscope = 0
 ```
 
-NOTE: gutentags will identify current project root by by root markers (.git/.svn/.root). if your project is not in any git/svn repository, gutentags will not generate gtags database for it. To avoid this, you can create an empty `.root` file in your project root, and gutentags will know where is your project root and generate gtags database for it.
-
-
-# Demo
-
-**Gutentags_plus** works very well when searching definition/references in huge projects like linux kernel:
-
-![](doc/gutentags_plus.png)
-
-Searching is very fast, You can't browse linux kernel source in IDEs, but you can read it in vim easily with the help of this plugin. 
+Only usefull for my is the quickfix window.
 
 
 # Command
